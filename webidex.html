@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title> Space Explorer</title>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    /* =====================
+       GLOBAL STYLES
+    ====================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: radial-gradient(circle at top, #0a0f2c, #000);
+      color: #fff;
+      overflow-x: hidden;
+    }
+
+    h1, h2 {
+      letter-spacing: 2px;
+    }
+
+    section {
+      padding: 80px 8%;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    /* =====================
+       STAR BACKGROUND
+    ====================== */
+    .stars {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 70% 80%, white, transparent),
+        radial-gradient(1px 1px at 40% 60%, white, transparent),
+        radial-gradient(2px 2px at 90% 20%, white, transparent),
+        radial-gradient(1px 1px at 10% 90%, white, transparent);
+      animation: twinkle 4s infinite alternate;
+      z-index: 0;
+    }
+
+    @keyframes twinkle {
+      from { opacity: 0.6; }
+      to   { opacity: 1; }
+    }
+
+    /* =====================
+       HERO SECTION
+    ====================== */
+    .hero {
+      height: 100vh;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      animation: fadeIn 2s ease forwards;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      text-shadow: 0 0 20px cyan;
+    }
+
+    .hero p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      opacity: 0;
+      animation: fadeUp 2s ease forwards 1s;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 40px;
+      padding: 15px 40px;
+      border-radius: 40px;
+      color: #fff;
+      text-decoration: none;
+      border: 2px solid cyan;
+      box-shadow: 0 0 15px cyan;
+      transition: all 0.4s ease;
+      animation: glow 2s infinite alternate;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px violet;
+    }
+
+    /* =====================
+       ABOUT SECTION
+    ====================== */
+    .about {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 50px;
+      align-items: center;
+    }
+
+    .about-text {
+      animation: slideLeft 1.5s ease forwards;
+    }
+
+    .about img {
+      border-radius: 20px;
+      box-shadow: 0 0 25px rgba(0,255,255,0.4);
+      animation: slideRight 1.5s ease forwards;
+    }
+
+    /* =====================
+       PLANETS SECTION
+    ====================== */
+    .features {
+      text-align: center;
+    }
+
+    .planet-grid {
+      margin-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 40px;
+    }
+
+    .planet {
+      background: rgba(255,255,255,0.05);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 15px rgba(0,255,255,0.2);
+      transition: 0.4s ease;
+    }
+
+    .planet img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      margin: auto;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .planet:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 35px cyan;
+    }
+
+    /* =====================
+       GALLERY
+    ====================== */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .gallery img {
+      border-radius: 15px;
+      transition: 0.4s ease;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px violet;
+    }
+
+    /* =====================
+       FOOTER
+    ====================== */
+    footer {
+      padding: 40px;
+      text-align: center;
+      background: linear-gradient(180deg, #000, #0a0f2c);
+      animation: gradientMove 6s infinite alternate;
+    }
+
+    /* =====================
+       ANIMATIONS
+    ====================== */
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+
+    @keyframes fadeUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    @keyframes slideLeft {
+      from { transform: translateX(-50px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes slideRight {
+      from { transform: translateX(50px); opacity: 0; }
+      to   { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 15px cyan; }
+      to   { box-shadow: 0 0 30px violet; }
+    }
+
+    @keyframes gradientMove {
+      from { background-position: left; }
+      to { background-position: right; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="stars"></div>
+    <div class="hero-content">
+      <h1>Explore the Infinite Universe</h1>
+      <p>Drift through galaxies, stars, and cosmic wonders</p>
+      <a href="#" class="btn">Start Journey</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about">
+    <div class="about-text">
+      <h2>About Space</h2>
+      <p>
+        Space is vast, mysterious, and endlessly beautiful. From glowing nebulae
+        to distant galaxies, the universe invites us to explore beyond imagination.
+      </p>
+    </div>
+    <img src="https://images.unsplash.com/photo-1446776811953-b23d57bd21aa" alt="Galaxy">
+  </section>
+
+  <!-- PLANETS -->
+  <section class="features">
+    <h2>Cosmic Worlds</h2>
+    <div class="planet-grid">
+      <div class="planet">
+        <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4">
+        <h3>Mars</h3>
+      </div>
+      <div class="planet">
+        <img src="https://images.unsplash.com/photo-1614642264762-d0a3b8bf3700">
+        <h3>Neptune</h3>
+      </div>
+      <div class="planet">
+        <img src="https://images.unsplash.com/photo-1614315517650-3771cf72d18a">
+        <h3>Saturn</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery">
+    <img src="https://images.unsplash.com/photo-1462331940025-496dfbfc7564">
+    <img src="https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3">
+    <img src="https://images.unsplash.com/photo-1450849608880-6f787542c88a">
+    <img src="https://images.unsplash.com/photo-1447433819943-74a20887a81e">
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Cosmic Journey • Drift Beyond Reality</p>
+  </footer>
+
+</body>
+</html>
